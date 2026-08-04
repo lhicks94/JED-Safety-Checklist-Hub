@@ -50,5 +50,8 @@ function validateBeforeSubmit(){const errors=[],company=document.getElementById(
 async function handleSubmit(event){event.preventDefault();const form=event.target,errors=validateBeforeSubmit(),errorBox=document.getElementById('formErrors'),successBox=document.getElementById('formSuccess');errorBox.classList.add('hidden');successBox.classList.add('hidden');if(!form.checkValidity()||errors.length){form.reportValidity();if(errors.length){errorBox.innerHTML=errors.map(e=>`<div>${e}</div>`).join('');errorBox.classList.remove('hidden')}return}const payload=collectFormData(form);if(!SUBMISSION_ENDPOINT){const key='jedunn_safety_checklist_test_submissions';const existing=JSON.parse(localStorage.getItem(key)||'[]');existing.push(payload);localStorage.setItem(key,JSON.stringify(existing));successBox.innerHTML='Submission captured for front-end testing. Backend dashboard connection is not configured yet.';successBox.classList.remove('hidden');form.querySelector('.submit-btn').disabled=true;return}try{const response=await fetch(SUBMISSION_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!response.ok)throw new Error('Submission failed.');successBox.innerHTML='Submission successful. Thank you. Your checklist has been submitted.';successBox.classList.remove('hidden');form.reset()}catch(err){errorBox.textContent='Submission could not be completed. Please notify Safety.';errorBox.classList.remove('hidden')}}
 initHub();
 </script>
+  
+<script src="kend.jsscript>
+  
 </body>
 </html>
