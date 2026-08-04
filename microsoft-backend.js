@@ -16,7 +16,7 @@
   <script src="microsoft-backend.js"></script>
 */
 
-const POWER_AUTOMATE_SUBMISSION_URL = "https://defaulte5e66f9b9af247a3817953be49b044.90.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/23/workflows/f8d1b244e17d412ea567edfebeb39c29/triggers/manual/paths/invoke?api-version=1";
+const POWER_AUTOMATE_SUBMISSION_URL = "https://defaulte5e66f9b9af247a3817953be49b044.90.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/23/workflows/f8d1b244e17d412ea567edfebeb39c29/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=1jJNMXlAiurdGlqqy56LsDLxxp-GzLuCkkjhqVgUBco";
 
 function msSafeValue(value) {
   if (value === undefined || value === null) return "";
