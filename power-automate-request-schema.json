@@ -1,0 +1,75 @@
+{
+  "type": "object",
+  "properties": {
+    "submissionId": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "submittedAt": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "companyKey": {
+      "type": "string"
+    },
+    "checklistId": {
+      "type": "string"
+    },
+    "checklistTitle": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "negativeFinding": {
+      "type": "boolean"
+    },
+    "fields": {
+      "type": "object"
+    },
+    "responses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "response": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "correctiveAction": {
+      "type": "string"
+    },
+    "photoCount": {
+      "type": "integer"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "base64": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
