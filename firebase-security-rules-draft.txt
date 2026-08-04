@@ -1,0 +1,33 @@
+/*
+  Suggested Firebase Security Rules - Draft Only
+  File: firebase-security-rules-draft.txt
+
+  These rules are a starting point to discuss with IT or whoever manages the Firebase project.
+  They are intentionally conservative for dashboard access.
+
+  Public users need to CREATE checklist submissions and upload photos.
+  Public users should NOT read stored submissions.
+  Admin users should read submissions only after signing in.
+*/
+
+// Firestore rules draft
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /safetyChecklistSubmissions/{submissionId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}
+
+// Storage rules draft
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /safety-checklist-uploads/{allPaths=**} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}
