@@ -212,8 +212,8 @@ window.validateBeforeSubmit = function validateBeforeSubmit() {
   if (!company || !company.value) errors.push("Company / Trade Partner is required.");
   if (company && company.value === "Other" && other && !other.value.trim()) errors.push("Enter Company Name is required when Other is selected.");
   if (typeof window.hasNegativeFinding === "function" && window.hasNegativeFinding()) {
-    const corrective = document.getElementById("correctiveAction");
-    if (!corrective || !corrective.value.trim()) errors.push("Corrective action is required for negative findings.");
+   
+   
     if (msGetPhotoFiles().length === 0) errors.push("At least one photo is required for negative findings.");
   }
   return errors;
