@@ -148,25 +148,64 @@ function msDisableSubmit(form, disabled) {
   button.textContent = disabled ? "Submitting..." : "Submit Checklist";
 }
 
+
 function msAddPhotoInput(container) {
   const count = container.querySelectorAll(".photo-input-row").length + 1;
   const row = document.createElement("div");
   row.className = "photo-input-row";
   row.style.cssText = "border:1px solid #d1d5db;border-radius:12px;padding:10px;margin:10px 0;background:#fff;";
+
   row.innerHTML = `
     <label style="display:block;font-weight:800;margin:0 0 6px;">Photo ${count}</label>
+
     <input data-photo-input="true"
-       type="file"
-       accept="image/*"
-       style="width:100%;">
-    <button type="button" class="remove-photo-btn" style="margin-top:8px;border:1px solid #d1d5db;background:#fff;color:#b91c1c;border-radius:10px;padding:8px 10px;font-weight:800;">Remove Photo</button>
+           type="file"
+           accept="image/*"
+           style="width:100%;">
+
+    <div class="photo-preview-wrap" style="display:none;margin-top:10px;">
+      <img class="photo-preview"
+           alt="Selected photo preview"
+           style="width:100%;max-height:260px;object-fit:contain;border:1px solid #d1d5db;border-radius:12px;background:#f9fafb;padding:6px;">
+    </div>
+
+    <button type="button"
+            class="remove-photo-btn"
+            style="margin-top:8px;border:1px solid #d1d5db;background:#fff;color:#b91c1c;border-radius:10px;padding:8px 10px;font-weight:800;">
+      Remove Photo
+    </button>
   `;
+
+  const input = row.querySelector("input[data-photo-input='true']");
+  const previewWrap = row.querySelector(".photo-preview-wrap");
+  const previewImg = row.querySelector(".photo-preview");
+
+  input.addEventListener("change", () => {
+    const file = input.files && input.files[0];
+
+    if (!file) {
+      previewImg.removeAttribute("src");
+      previewWrap.style.display = "none";
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      previewImg.src = reader.result;
+      previewWrap.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+  });
+
   row.querySelector(".remove-photo-btn").addEventListener("click", () => {
     row.remove();
     msUpdatePhotoLabels(container);
   });
+
   container.appendChild(row);
-}
+} 
 
 function msUpdatePhotoLabels(container) {
   Array.from(container.querySelectorAll(".photo-input-row label")).forEach((label, index) => {
