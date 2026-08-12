@@ -155,7 +155,10 @@ function msAddPhotoInput(container) {
   row.style.cssText = "border:1px solid #d1d5db;border-radius:12px;padding:10px;margin:10px 0;background:#fff;";
   row.innerHTML = `
     <label style="display:block;font-weight:800;margin:0 0 6px;">Photo ${count}</label>
-    <input data-photo-input="true" type="file" accept="image/*" capture="environment" style="width:100%;" />
+    <input data-photo-input="true"
+       type="file"
+       accept="image/*"
+       style="width:100%;">
     <button type="button" class="remove-photo-btn" style="margin-top:8px;border:1px solid #d1d5db;background:#fff;color:#b91c1c;border-radius:10px;padding:8px 10px;font-weight:800;">Remove Photo</button>
   `;
   row.querySelector(".remove-photo-btn").addEventListener("click", () => {
